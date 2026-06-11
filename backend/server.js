@@ -18,16 +18,22 @@ app.use((req, res, next) => {
   });
   next();
 });
-
-// Middleware
-app.use(express.json());
 app.use(cors({
-  origin: ['http://localhost:8080', 'http://127.0.0.1:8080', 'http://localhost:5173', 'http://127.0.0.1:5173', 'http://localhost:3000', 'http://127.0.0.1:3000'],
+  origin: [
+    'http://localhost:8080',
+    'http://127.0.0.1:8080',
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+
+    // Production frontend
+    'https://airq-frontend-r48g-hucxf1xjj-mohammed-yousuf-furqan-s-projects.vercel.app'
+  ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
-
 // More detailed request logging after parsing JSON
 app.use((req, res, next) => {
   if (req.body) {
